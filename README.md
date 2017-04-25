@@ -8,6 +8,24 @@ Currently EasyDDNS Library Supports DuckDNS and No-ip Only. More DDNS Services C
 
 Find More about DDNS: [WiKipedia](https://en.wikipedia.org/wiki/Dynamic_DNS)
 
+# How to Install
+###### Directly Through Arduino IDE
+Go to Sketch > Include Library > Library Manager > Search for "EasyDDNS" > Install
+
+###### Mannual Install
+
+For Windows: Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/master.zip) and extract the .zip in Documents>Arduino>Libraries>{Place "EasyDDNS" folder Here}
+
+For Linux: Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/master.zip) and extract the .zip in Sketchbook>Libraries>{Place "EasyDDNS" folder Here}
+
+###### Mannually through IDE
+
+Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/master.zip), Go to Sketch>Include Library>Add .zip Library> Select the Downloaded .zip File.
+
+# Dependancies
+This Library is Dependent on [ESP8266 Core Library](https://github.com/esp8266/Arduino) to Function Properly.
+Make Sure you Install Both EasyDDNS and ESP8266 Core Library to make this Work.
+
 # How to Implement
 EasyDDNS Library uses only 4 Lines of Code to run the requested update server on your ESP8266.
 
