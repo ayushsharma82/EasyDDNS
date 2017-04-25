@@ -15,8 +15,8 @@ Here is how you can do:
 
 - Add `#include<EasyDDNS.h>` in your Code.
 - Use `EasyDDNS DDNS;` to setup name for methods.
-- Use `DDNS.service();` in setup() and input "duckdns" or "noip" according to your preference.
-- Add `DDNS.DuckClient("domain","token");` or `DDNS.NoipClient("domain","username","password");` according to above Line of Code.
+- Use `DDNS.service("duckdns");` in setup() and input "duckdns" or "noip" according to your preference.
+- Add `DDNS.DuckClient("domain","token");` or `DDNS.NoipClient("domain","username","password");` according to above Line of Code.(You can't use both at once.)
 - Atlast, Add `DDNS.update(10000);` to check for New Public IP after desired 'interval'
 
 2 Ready to Use Examples are Provided with Library for DuckDNS and No-ip Respectivly.
