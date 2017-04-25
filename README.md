@@ -37,4 +37,7 @@ Here is how you can do:
 - Add `DDNS.DuckClient("domain","token");` or `DDNS.NoipClient("domain","username","password");` according to above Line of Code.(You can't use both at once.)
 - Atlast, Add `DDNS.update(10000);` in loop() to check for New Public IP after desired 'interval'
 
-2 Ready to Use Examples are Provided with Library for DuckDNS and No-ip Respectivly.
+**2 Ready to Use Examples are Provided with Library for DuckDNS and No-ip Respectivly.**
+
+# Support Me
+Liked this Library? You may want to Support me by sending me a :beer: [Beer](https://www.paypal.me/ayushsharma82/5).
