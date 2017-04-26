@@ -27,17 +27,23 @@ This Library is Dependent on [ESP8266 Core Library](https://github.com/esp8266/A
 Make Sure you Install Both EasyDDNS and ESP8266 Core Library to make this Work.
 
 # How to Implement
-EasyDDNS Library uses only 4 Lines of Code to run the requested update server on your ESP8266.
+EasyDDNS Library uses only 3 Lines of Code to run the requested update server on your ESP8266.
 
-Here is how you can do:
+###### Here is How you can use the Library:<br>
 
-- Add `#include<EasyDDNS.h>` in your Code.
-- Use `EasyDDNS DDNS;` to setup name for methods.
-- Use `DDNS.service("duckdns");` in setup() and input "duckdns" or "noip" according to your preference.
-- Add `DDNS.DuckClient("domain","token");` or `DDNS.NoipClient("domain","username","password");` according to above Line of Code.(You can't use both at once.)
-- Atlast, Add `DDNS.update(10000);` in loop() to check for New Public IP after desired 'interval'
+**For V1.5.0:**<br>
+- Add `#include<EasyDDNS.h>` in your Code at Top.
+- Use `EasyDDNS.service("");` in setup() to select your ddns service - "duckdns" / "noip" / "dyndns" / "dynu".
 
-**2 Ready to Use Examples are Provided with Library for DuckDNS and No-ip Respectivly.**
+Now in setup() again, For **DuckDNS** Use `EasyDDNS.client("domain","token");`<br>
+OR<br>
+For **DynDNS** Use `EasyDDNS.client("hostname","username","client-key");`<br>
+OR<br>
+For **No-ip / Dynu**, Use `EasyDDNS.client("hostname","username","password");`<br>
+
+- Atlast Use `EasyDDNS.update(10000);` to set Interval to Check for New Public IP.
+
+**4 Ready to Use Examples are Provided with Library for DuckDNS, DynDNS, Dynu & No-ip.**
 
 # Support Me
-Liked this Library? You may want to Support me by sending me a :beer: [Beer](https://www.paypal.me/ayushsharma82/5).
+Liked this Library? You can Support me by sending me a :beer: [Beer](https://www.paypal.me/ayushsharma82/5).
