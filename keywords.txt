@@ -1,5 +1,4 @@
-EasyDDNS    KEYWORD1
+EasyDDNSClass    KEYWORD1
 service     KEYWORD2
-DuckClient  KEYWORD2
-NoipClient  KEYWORD2
+client      KEYWORD2
 update      KEYWORD2

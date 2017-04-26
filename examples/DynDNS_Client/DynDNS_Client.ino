@@ -1,6 +1,6 @@
 /*
 ######### DuckDNS Update Client for ESP8266 ##########
-This Example Explains the Use of EasyDDNS Library with DuckDNS Service
+This Example Explains the Use of EasyDDNS Library with DynDNS Service
 and Checks for New IP Every 10 Seconds.
 
 Author: Ayush Sharma
@@ -25,8 +25,8 @@ Serial.print(".");
 Serial.println(WiFi.localIP()); // Print the IP address
 server.begin();
 
-EasyDDNS.service("duckdns");    // Enter your DDNS Service Name - "duckdns" / "noip"
-EasyDDNS.client("domain","token");    // Enter ddns Domain & Token | Example - "esp.duckdns.org","1234567"
+EasyDDNS.service("dyndns");    // Enter your DDNS Service Name - "duckdns" / "noip" / "dyndns" / "dynu"
+EasyDDNS.client("hostname","username","client-key");    // Enter ddns Hostname - Username - Client-key
 }
 
 void loop() {

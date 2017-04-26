@@ -7,7 +7,11 @@
   This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License:
   http://creativecommons.org/licenses/by-sa/4.0/
 
-  Version 1.0.0
+  Version 1.5.0
+
+  Changelog:
+  Version 1.0.0 - Made EasyDDNS Library for No-ip and DuckDNS
+  Version 1.5.0 - Optimized Library and Added Dyndns & Dynu
 */
 
 #ifndef EasyDDNS_H
@@ -20,26 +24,23 @@
 
 #define HARDWARE "esp8266"
 
-class EasyDDNS{
+class EasyDDNSClass{
 public:
   void service(String ddns_service);
-  void DuckClient(String ddns_duck_domain, String ddns_token);
-  void NoipClient(String ddns_noip_domain, String ddns_username,String ddns_password);
+  void client(String ddns_domain, String ddns_username,String ddns_password = "");
   void update(unsigned long ddns_update_interval);
 
 private:
   unsigned long interval;
   unsigned long previousMillis;
-  
+
   String new_ip;
   String old_ip;
   String update_url;
-  String noip_u;
-  String noip_p;
-  String noip_domain;
+  String ddns_u;
+  String ddns_p;
+  String ddns_d;
   String ddns_choice;
-  String duck_token;
-  String duck_domain;
 };
-
+extern EasyDDNSClass EasyDDNS;
 #endif

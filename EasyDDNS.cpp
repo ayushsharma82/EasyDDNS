@@ -13,27 +13,26 @@ Written in 2017 by Ayush Sharma.
 This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License:
 http://creativecommons.org/licenses/by-sa/4.0/
 
-Version 1.0.0
+Version 1.5.0
+
+Changelog:
+Version 1.0.0 - Made EasyDDNS Library for No-ip and DuckDNS
+Version 1.5.0 - Optimized Library and Added Dyndns & Dynu
 */
 
 #include "EasyDDNS.h"
 
-void EasyDDNS::service(String ddns_service){
+void EasyDDNSClass::service(String ddns_service){
   ddns_choice = ddns_service;
 }
 
-void EasyDDNS::DuckClient(String ddns_duck_domain,String ddns_token){
-  duck_domain = ddns_duck_domain;
-  duck_token = ddns_token;
+void EasyDDNSClass::client(String ddns_domain, String ddns_username, String ddns_password){
+  ddns_d = ddns_domain;
+  ddns_u = ddns_username;
+  ddns_p = ddns_password;
 }
 
-void EasyDDNS::NoipClient(String ddns_noip_domain, String ddns_username, String ddns_password){
-  noip_domain = ddns_noip_domain;
-  noip_u = ddns_username;
-  noip_p = ddns_password;
-}
-
-void EasyDDNS::update(unsigned long ddns_update_interval){
+void EasyDDNSClass::update(unsigned long ddns_update_interval){
 
     interval = ddns_update_interval;
 
@@ -42,12 +41,18 @@ void EasyDDNS::update(unsigned long ddns_update_interval){
         previousMillis = currentMillis;
 
 // ######## GENERATE UPDATE URL ######## //
-        if(String(ddns_choice) == "duckdns"){
-          update_url = "http://www.duckdns.org/update?domains="+duck_domain+"&token="+duck_token+"&ip=";}
-        else if(String(ddns_choice) == "noip"){
-          update_url = "http://"+noip_u+":"+noip_p+"@dynupdate.no-ip.com/nic/update?hostname="+noip_domain+"&myip="+new_ip+"";}
+        if(ddns_choice == "duckdns"){
+          update_url = "http://www.duckdns.org/update?domains="+ddns_d+"&token="+ddns_u+"&ip=";}
+        else if(ddns_choice == "noip"){
+          update_url = "http://"+ddns_u+":"+ddns_p+"@dynupdate.no-ip.com/nic/update?hostname="+ddns_d+"&myip="+new_ip+"";}
+        else if(ddns_choice == "dyndns"){
+          update_url = "http://"+ddns_u+":"+ddns_p+"@members.dyndns.org/v3/update?hostname="+ddns_d+"&myip="+new_ip+"";}
+        else if(ddns_choice == "dynu"){
+          update_url = "http://api.dynu.com/nic/update?hostname="+ddns_d+"&myip="+new_ip+"&username="+ddns_u+"&password="+ddns_p+"";}
         else{
-          Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");}
+          Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
+          return;
+         }
 
 // ######## GET PUBLIC IP ######## //
         HTTPClient http;
@@ -57,6 +62,9 @@ void EasyDDNS::update(unsigned long ddns_update_interval){
           if(httpCode == HTTP_CODE_OK) {
                 new_ip = http.getString();
               }
+        }else{
+          http.end();
+          return;
         }
         http.end();
 
@@ -74,3 +82,5 @@ void EasyDDNS::update(unsigned long ddns_update_interval){
 
     }
 }
+
+EasyDDNSClass EasyDDNS;

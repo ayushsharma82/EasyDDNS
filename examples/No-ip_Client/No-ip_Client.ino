@@ -7,14 +7,11 @@ Author: Ayush Sharma
 */
 #include <EasyDDNS.h>
 #include <ESP8266WiFi.h>
-#include <ESP8266HTTPClient.h>
 
 const char* ssid = "your-ssid";
 const char* password = "your-password";
 
 WiFiServer server(80);
-
-EasyDDNS DDNS;
 
 void setup() {
 Serial.begin(115200);
@@ -27,10 +24,10 @@ Serial.print(".");
 Serial.println(WiFi.localIP()); // Print the IP address
 server.begin();
 
-DDNS.service("noip");    // Enter your DDNS Service Name - "duckdns" / "noip"
-DDNS.NoipClient("domain","username","password");    // Enter ddns Domain & Username & Password | Example - "esp.duckdns.org","username", "password"
+EasyDDNS.service("noip");    // Enter your DDNS Service Name - "duckdns" / "noip"
+EasyDDNS.client("domain","username","password");    // Enter ddns Domain & Username & Password | Example - "esp.duckdns.org","username", "password"
 }
 
 void loop() {
-DDNS.update(10000); // Check for New Ip Every 10 Seconds.
+EasyDDNS.update(10000); // Check for New Ip Every 10 Seconds.
 }
