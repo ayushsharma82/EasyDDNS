@@ -3,7 +3,7 @@ An Easy to Use ESP8266 DDNS Update Client Library.
 
 This Library is Created to Update your DDNS Domains with your ESP8266. The EasyDDNS Library can be Implemented in your Major Projects too as a Sidekick. It is Independent and Does not Interfare with rest of the Working of your Code on ESP8266.
 
-Currently EasyDDNS Library Supports DuckDNS and No-ip Only. More DDNS Services Coming Soon. Suggestions Appreciated.
+**Currently EasyDDNS Library Supports DuckDNS, No-ip, DynDNS, Dynu.**
 
 
 Find More about DDNS: [WiKipedia](https://en.wikipedia.org/wiki/Dynamic_DNS)
