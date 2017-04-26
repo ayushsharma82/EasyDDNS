@@ -41,7 +41,7 @@ For **DynDNS** Use `EasyDDNS.client("hostname","username","client-key");`<br>
 OR<br>
 For **No-ip / Dynu**, Use `EasyDDNS.client("hostname","username","password");`<br>
 
-- Atlast Use `EasyDDNS.update(10000);` to set Interval to Check for New Public IP.
+- Atlast Use `EasyDDNS.update(10000);` in loop() to set Interval to Check for New Public IP.
 
 **4 Ready to Use Examples are Provided with Library for DuckDNS, DynDNS, Dynu & No-ip.**
 
