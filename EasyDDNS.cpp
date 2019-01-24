@@ -37,14 +37,18 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
     interval = ddns_update_interval;
 
     unsigned long currentMillis = millis(); // Calculate Elapsed Time & Trigger
+  
     if(currentMillis - previousMillis >= interval) {
         previousMillis = currentMillis;
-
-// ######## GENERATE UPDATE URL ######## //
+// ######## CHECK & UPDATE ######### //
+    if(old_ip != new_ip){
+      old_ip = new_ip;
+      // ######## GENERATE UPDATE URL ######## //
         if(ddns_choice == "duckdns"){
           update_url = "http://www.duckdns.org/update?domains="+ddns_d+"&token="+ddns_u+"&ip=";}
         else if(ddns_choice == "noip"){
-          update_url = "http://"+ddns_u+":"+ddns_p+"@dynupdate.no-ip.com/nic/update?hostname="+ddns_d+"&myip="+new_ip+"";}
+          update_url = "ht   tp://"+ddns_p+"@8.23.224.120/nic/update?hostname="+ddns_d+"&myip="+new_ip+"";}
+          //update_url = "http://"+ddns_u+":"+ddns_p+"@dynupdate.no-ip.com/nic/update?hostname="+ddns_d+"&myip="+new_ip+"";}
         else if(ddns_choice == "dyndns"){
           update_url = "http://"+ddns_u+":"+ddns_p+"@members.dyndns.org/v3/update?hostname="+ddns_d+"&myip="+new_ip+"";}
         else if(ddns_choice == "dynu"){
@@ -53,7 +57,16 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
           Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
           return;
          }
-
+       HTTPClient http;
+       http.begin(update_url);
+       int httpCode = http.GET();
+       if(httpCode > 0) {
+         //Serial.println("ip degisti : "+new_ip);
+        }
+       http.end();
+     }else{
+       //Serial.println("ip sabit : "+old_ip);
+     }
 // ######## GET PUBLIC IP ######## //
         HTTPClient http;
         http.begin("http://ipv4bot.whatismyipaddress.com/");
@@ -67,19 +80,6 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
           return;
         }
         http.end();
-
-// ######## CHECK & UPDATE ######### //
-    if(old_ip != new_ip){
-
-       HTTPClient http;
-       http.begin(update_url);
-       int httpCode = http.GET();
-       if(httpCode > 0) {
-         old_ip = new_ip;
-        }
-       http.end();
-     }
-
     }
 }
 
