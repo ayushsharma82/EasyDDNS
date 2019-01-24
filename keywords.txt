@@ -1,4 +1,4 @@
-EasyDDNSClass    KEYWORD1
-service     KEYWORD2
-client      KEYWORD2
-update      KEYWORD2
+EasyDDNSClass	KEYWORD1
+service	KEYWORD2
+client	KEYWORD2
+update	KEYWORD2
