@@ -42,7 +42,7 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
 
 // ######## GENERATE UPDATE URL ######## //
         if(ddns_choice == "duckdns"){
-          update_url = "http://www.duckdns.org/update?domains="+ddns_d+"&token="+ddns_u+"&ip=";}
+          update_url = "http://www.duckdns.org/update?domains="+ddns_d+"&token="+ddns_u+"&ip="+new_ip+"";}
         else if(ddns_choice == "noip"){
           update_url = "http://"+ddns_u+":"+ddns_p+"@dynupdate.no-ip.com/nic/update?hostname="+ddns_d+"&myip="+new_ip+"";}
         else if(ddns_choice == "dyndns"){
