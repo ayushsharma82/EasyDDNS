@@ -1,23 +1,29 @@
 /*
 // ##### REQUIRED LIBRARIES IN SKETCH ##### //
+ -- for ESP8266 --
 #include "ESP8266WiFi.h"
 #include "ESP8266HTTPClient.h"
+
+-- for ESP32 --
+#include "WiFi.h"
+#include "HTTPClient.h"
+
 */
 
 /*
-EasyDDNS Library for ESP8266
+EasyDDNS Library for ESP8266 and ESP32
 See the README file for more details.
 
-Written in 2017 by Ayush Sharma.
+Original EasyDDNS Library for ESP8266 written in 2017 by Ayush Sharma.
+Modified by Vivian Ng in 2019.
 
 This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License:
 http://creativecommons.org/licenses/by-sa/4.0/
 
-Version 1.5.0
+Version 1.0.0
 
 Changelog:
-Version 1.0.0 - Made EasyDDNS Library for No-ip and DuckDNS
-Version 1.5.0 - Optimized Library and Added Dyndns & Dynu
+Version 1.0.0 - Added ESP32 support and enom DNS provider.
 */
 
 #include "EasyDDNS.h"
@@ -49,6 +55,8 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
           update_url = "http://"+ddns_u+":"+ddns_p+"@members.dyndns.org/v3/update?hostname="+ddns_d+"&myip="+new_ip+"";}
         else if(ddns_choice == "dynu"){
           update_url = "http://api.dynu.com/nic/update?hostname="+ddns_d+"&myip="+new_ip+"&username="+ddns_u+"&password="+ddns_p+"";}
+        else if(ddns_choice == "enom"){
+          update_url = "http://dynamic.name-services.com/interface.asp?command=SetDnsHost&HostName="+ddns_d+"&Zone="+ddns_u+"&DomainPassword="+ddns_p+"&Address="+new_ip+"";}
         else{
           Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
           return;

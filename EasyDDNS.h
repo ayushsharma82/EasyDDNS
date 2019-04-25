@@ -1,17 +1,29 @@
 /*
-  EasyDDNS Library for ESP8266
-  See the README file for more details.
+// ##### REQUIRED LIBRARIES IN SKETCH ##### //
+ -- for ESP8266 --
+#include "ESP8266WiFi.h"
+#include "ESP8266HTTPClient.h"
 
-  Written in 2017 by Ayush Sharma.
+-- for ESP32 --
+#include "WiFi.h"
+#include "HTTPClient.h"
 
-  This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License:
-  http://creativecommons.org/licenses/by-sa/4.0/
+*/
 
-  Version 1.5.0
+/*
+EasyDDNS Library for ESP8266 and ESP32
+See the README file for more details.
 
-  Changelog:
-  Version 1.0.0 - Made EasyDDNS Library for No-ip and DuckDNS
-  Version 1.5.0 - Optimized Library and Added Dyndns & Dynu
+Original EasyDDNS Library for ESP8266 written in 2017 by Ayush Sharma.
+Modified by Vivian Ng in 2019.
+
+This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License:
+http://creativecommons.org/licenses/by-sa/4.0/
+
+Version 1.0.0
+
+Changelog:
+Version 1.0.0 - Added ESP32 support and enom DNS provider.
 */
 
 #ifndef EasyDDNS_H
@@ -19,10 +31,17 @@
 
 #include "Arduino.h"
 #include "stdlib_noniso.h"
-#include "ESP8266WiFi.h"
-#include "ESP8266HTTPClient.h"
 
-#define HARDWARE "esp8266"
+#if defined(ESP8266)
+  #include "ESP8266WiFi.h"
+  #include "ESP8266HTTPClient.h"
+  #define HARDWARE "esp8266"
+#elif defined(ESP32)
+  #include "WiFi.h"
+  #include "HTTPClient.h"
+  #define HARDWARE "esp32"
+#endif
+
 
 class EasyDDNSClass{
 public:
