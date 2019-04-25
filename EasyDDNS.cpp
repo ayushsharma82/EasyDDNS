@@ -20,10 +20,11 @@ Modified by Vivian Ng in 2019.
 This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License:
 http://creativecommons.org/licenses/by-sa/4.0/
 
-Version 1.0.0
-
+Version 1.5.0r1
 Changelog:
-Version 1.0.0 - Added ESP32 support and enom DNS provider.
+Version 1.0.0 - Made EasyDDNS Library for No-ip and DuckDNS
+Version 1.5.0 - Optimized Library and Added Dyndns & Dynu
+Version 1.5.0r1 - Added ESP32 support and enom DNS provider.
 */
 
 #include "EasyDDNS.h"
