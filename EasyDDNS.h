@@ -11,20 +11,19 @@
 */
 
 /*
-EasyDDNS Library for ESP8266 and ESP32
+EasyDDNS Library for ESP8266
 See the README file for more details.
 
-Original EasyDDNS Library for ESP8266 written in 2017 by Ayush Sharma.
-Modified by Vivian Ng in 2019.
+Written in 2017 by Ayush Sharma.
 
 This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License:
 http://creativecommons.org/licenses/by-sa/4.0/
 
-Version 1.5.0r1
+Version 1.5.0
+
 Changelog:
 Version 1.0.0 - Made EasyDDNS Library for No-ip and DuckDNS
 Version 1.5.0 - Optimized Library and Added Dyndns & Dynu
-Version 1.5.0r1 - Added ESP32 support and enom DNS provider.
 */
 
 #ifndef EasyDDNS_H

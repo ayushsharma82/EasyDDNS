@@ -1,12 +1,9 @@
 # EasyDDNS
-An Easy to Use ESP8266 and ESP32 DDNS Update Client Library.
+An Easy to Use ESP8266 DDNS Update Client Library.
 
-This Library is Created to Update your DDNS Domains with your ESP8266 and ESP32. The EasyDDNS Library can be Implemented in your Major Projects too as a Sidekick. It is Independent and Does not Interfare with rest of the Working of your Code on ESP8266 and ESP32.
+This Library is Created to Update your DDNS Domains with your ESP8266. The EasyDDNS Library can be Implemented in your Major Projects too as a Sidekick. It is Independent and Does not Interfare with rest of the Working of your Code on ESP8266.
 
-**Currently EasyDDNS Library Supports DuckDNS, No-ip, DynDNS, Dynu, enom.**
-<br>
-**Original library supported only ESP8266 and DuckDNS, No-ip, DynDNS, and Dynu.**
-**This fork added support for ESP32 and enom.**
+**Currently EasyDDNS Library Supports DuckDNS, No-ip, DynDNS, Dynu.**
 
 
 Find More about DDNS: [WiKipedia](https://en.wikipedia.org/wiki/Dynamic_DNS)
@@ -34,7 +31,7 @@ EasyDDNS Library uses only 3 Lines of Code to run the requested update server on
 
 ###### Here is How you can use the Library:<br>
 
-**For V1.5.0r1:**<br>
+**For V1.5.0:**<br>
 - Add `#include<EasyDDNS.h>` in your Code at Top.
 - Use `EasyDDNS.service("");` in setup() to select your ddns service - "duckdns" / "noip" / "dyndns" / "dynu" / "enom".
 
@@ -51,5 +48,5 @@ where `host` is something like `www`, and `domain` can be `example.com` <br>
 
 **5 Ready to Use Examples are Provided with Library for DuckDNS, DynDNS, Dynu, No-ip & enom.**
 
-# Support original author
-Liked this Library? You can the original author by sending a :beer: [Beer](https://www.paypal.me/ayushsharma82/5).
+# Support Me
+Liked this Library? You can Support me by sending me a :beer: [Beer](https://www.paypal.me/ayushsharma82/5).
