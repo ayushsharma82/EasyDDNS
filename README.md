@@ -14,13 +14,13 @@ Go to Sketch > Include Library > Library Manager > Search for "EasyDDNS" > Insta
 
 ###### Manual Install
 
-For Windows: Download the [Repository](https://github.com/vivian-ng/EasyDDNS/archive/master.zip) and extract the .zip in Documents>Arduino>Libraries>{Place "EasyDDNS" folder Here}
+For Windows: Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/master.zip) and extract the .zip in Documents>Arduino>Libraries>{Place "EasyDDNS" folder Here}
 
-For Linux: Download the [Repository](https://github.com/vivian-ng/EasyDDNS/archive/master.zip) and extract the .zip in Sketchbook>Libraries>{Place "EasyDDNS" folder Here}
+For Linux: Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/master.zip) and extract the .zip in Sketchbook>Libraries>{Place "EasyDDNS" folder Here}
 
 ###### Manually through IDE
 
-Download the [Repository](https://github.com/vivian-ng/EasyDDNS/archive/master.zip), Go to Sketch>Include Library>Add .zip Library> Select the Downloaded .zip File.
+Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/master.zip), Go to Sketch>Include Library>Add .zip Library> Select the Downloaded .zip File.
 
 # Dependencies
 This Library is Dependent on [ESP8266 Core Library](https://github.com/esp8266/Arduino) or [Arduino core for ESP32](https://github.com/espressif/arduino-esp32) to Function Properly.
