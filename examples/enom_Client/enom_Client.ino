@@ -1,5 +1,5 @@
 /*
-######### Noip Update Client for ESP8266 ##########
+######### ENom Update Client for ESP8266 ##########
 This Example Explains the Use of EasyDDNS Library with No-ip Service
 and Checks for New Public IP Every 10 Seconds.
 
