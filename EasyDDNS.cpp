@@ -1,7 +1,13 @@
 /*
 // ##### REQUIRED LIBRARIES IN SKETCH ##### //
+ -- for ESP8266 --
 #include "ESP8266WiFi.h"
 #include "ESP8266HTTPClient.h"
+
+-- for ESP32 --
+#include "WiFi.h"
+#include "HTTPClient.h"
+
 */
 
 /*
@@ -49,6 +55,8 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
           update_url = "http://"+ddns_u+":"+ddns_p+"@members.dyndns.org/v3/update?hostname="+ddns_d+"&myip="+new_ip+"";}
         else if(ddns_choice == "dynu"){
           update_url = "http://api.dynu.com/nic/update?hostname="+ddns_d+"&myip="+new_ip+"&username="+ddns_u+"&password="+ddns_p+"";}
+        else if(ddns_choice == "enom"){
+          update_url = "http://dynamic.name-services.com/interface.asp?command=SetDnsHost&HostName="+ddns_d+"&Zone="+ddns_u+"&DomainPassword="+ddns_p+"&Address="+new_ip+"";}
         else{
           Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
           return;
