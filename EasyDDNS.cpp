@@ -45,7 +45,21 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
     unsigned long currentMillis = millis(); // Calculate Elapsed Time & Trigger
     if(currentMillis - previousMillis >= interval) {
         previousMillis = currentMillis;
-
+		
+// ######## GET PUBLIC IP ######## //
+        HTTPClient http;
+        http.begin("http://ipv4bot.whatismyipaddress.com/");
+        int httpCode = http.GET();
+        if(httpCode > 0) {
+          if(httpCode == HTTP_CODE_OK) {
+                new_ip = http.getString();
+              }
+        }else{
+          http.end();
+          return;
+        }
+        http.end();
+		
 // ######## GENERATE UPDATE URL ######## //
         if(ddns_choice == "duckdns"){
           update_url = "http://www.duckdns.org/update?domains="+ddns_d+"&token="+ddns_u+"&ip="+new_ip+"";}
@@ -61,20 +75,6 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
           Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
           return;
          }
-
-// ######## GET PUBLIC IP ######## //
-        HTTPClient http;
-        http.begin("http://ipv4bot.whatismyipaddress.com/");
-        int httpCode = http.GET();
-        if(httpCode > 0) {
-          if(httpCode == HTTP_CODE_OK) {
-                new_ip = http.getString();
-              }
-        }else{
-          http.end();
-          return;
-        }
-        http.end();
 
 // ######## CHECK & UPDATE ######### //
     if(old_ip != new_ip){
