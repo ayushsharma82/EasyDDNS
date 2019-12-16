@@ -71,6 +71,8 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
           update_url = "http://api.dynu.com/nic/update?hostname="+ddns_d+"&myip="+new_ip+"&username="+ddns_u+"&password="+ddns_p+"";}
         else if(ddns_choice == "enom"){
           update_url = "http://dynamic.name-services.com/interface.asp?command=SetDnsHost&HostName="+ddns_d+"&Zone="+ddns_u+"&DomainPassword="+ddns_p+"&Address="+new_ip+"";}
+        else if(ddns_choice == "all-inkl"){
+          update_url = "http://"+ddns_u+":"+ddns_p+"@dyndns.kasserver.com/?myip="+new_ip;}
         else{
           Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
           return;
