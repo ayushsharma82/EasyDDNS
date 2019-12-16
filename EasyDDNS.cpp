@@ -73,6 +73,8 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
           update_url = "http://dynamic.name-services.com/interface.asp?command=SetDnsHost&HostName="+ddns_d+"&Zone="+ddns_u+"&DomainPassword="+ddns_p+"&Address="+new_ip+"";}
         else if(ddns_choice == "all-inkl"){
           update_url = "http://"+ddns_u+":"+ddns_p+"@dyndns.kasserver.com/?myip="+new_ip;}
+        else if(ddns_choice == "selfhost.de"){
+          update_url = "http://"+ddns_u+":"+ddns_p+"@carol.selfhost.de/nic/update?;}
         else{
           Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
           return;
