@@ -33,14 +33,21 @@ EasyDDNS Library uses only 3 Lines of Code to run the requested update server on
 
 **For V1.5.0:**<br>
 - Add `#include<EasyDDNS.h>` in your Code at Top.
-- Use `EasyDDNS.service("");` in setup() to select your ddns service - "duckdns" / "noip" / "dyndns" / "dynu" / "enom".
+- Use `EasyDDNS.service("");` in setup() to select your ddns service - "duckdns" / "noip" / "dyndns" / "dynu" / "enom" / "all-inkl" / "selfhost.de".
+
 
 Now in setup() again, For **DuckDNS** Use `EasyDDNS.client("domain","token");`<br>
-OR<br>
+<br>
+OR
+<br>
 For **DynDNS** Use `EasyDDNS.client("hostname","username","client-key");`<br>
-OR<br>
-For **No-ip / Dynu**, Use `EasyDDNS.client("hostname","username","password");`<br>
-OR<br>
+<br>
+OR
+<br>
+For **No-ip / Dynu / all-inkl / selfhost.de**, Use `EasyDDNS.client("hostname","username","password");`<br>
+<br>
+OR
+<br>
 For **enom**, Use `EasyDDNS.client("host","domain","password");`<br>
 where `host` is something like `www`, and `domain` can be `example.com` <br>
 
