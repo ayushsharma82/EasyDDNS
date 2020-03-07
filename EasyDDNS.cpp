@@ -74,7 +74,7 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
         else if(ddns_choice == "all-inkl"){
           update_url = "http://"+ddns_u+":"+ddns_p+"@dyndns.kasserver.com/?myip="+new_ip;}
         else if(ddns_choice == "selfhost.de"){
-          update_url = "http://"+ddns_u+":"+ddns_p+"@carol.selfhost.de/nic/update?;}
+          update_url = "http://"+ddns_u+":"+ddns_p+"@carol.selfhost.de/nic/update?";}
         else{
           Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
           return;
@@ -86,7 +86,7 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
        HTTPClient http;
        http.begin(update_url);
        int httpCode = http.GET();
-       if(httpCode > 0) {
+       if(httpCode == 200) {
          old_ip = new_ip;
         }
        http.end();
