@@ -47,7 +47,7 @@ class EasyDDNSClass{
 public:
   void service(String ddns_service);
   void client(String ddns_domain, String ddns_username,String ddns_password = "");
-  void update(unsigned long ddns_update_interval);
+  void update(unsigned long ddns_update_interval, bool use_local_ip = false);
 
 private:
   unsigned long interval;
