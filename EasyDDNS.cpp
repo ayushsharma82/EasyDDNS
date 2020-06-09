@@ -75,6 +75,8 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval){
           update_url = "http://"+ddns_u+":"+ddns_p+"@dyndns.kasserver.com/?myip="+new_ip;}
         else if(ddns_choice == "selfhost.de"){
           update_url = "http://"+ddns_u+":"+ddns_p+"@carol.selfhost.de/nic/update?";}
+	else if(ddns_choice == "dyndns.it"){
+          update_url = "http://"+ddns_u+":"+ddns_p+"@update.dyndns.it/nic/update?hostname="+ddns_d;}
         else{
           Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
           return;
