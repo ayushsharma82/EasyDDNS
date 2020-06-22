@@ -3,7 +3,7 @@ An Easy to Use ESP8266 DDNS Update Client Library.
 
 This Library is created to update your DDNS domains with your ESP8266 Or ESP32. The EasyDDNS Library can be implemented in your major projects as a Sidekick. It is independent and does not interfare with rest of your code.
 
-**Currently EasyDDNS Library Supports DuckDNS, No-ip, DynDNS, Dynu, ENom.**
+**Currently EasyDDNS Library Supports DuckDNS, No-ip, DynDNS, Dynu, ENom, all-inkl, selfhost.de, strato.**
 
 
 Find More about DDNS: [WiKipedia](https://en.wikipedia.org/wiki/Dynamic_DNS)
@@ -44,7 +44,7 @@ For **DynDNS** Use `EasyDDNS.client("hostname","username","client-key");`<br>
 <br>
 OR
 <br>
-For **No-ip / Dynu / all-inkl / selfhost.de**, Use `EasyDDNS.client("hostname","username","password");`<br>
+For **No-ip / Dynu / all-inkl / selfhost.de / strato**, Use `EasyDDNS.client("hostname","username","password");`<br>
 <br>
 OR
 <br>
