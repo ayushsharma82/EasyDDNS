@@ -7,9 +7,15 @@
     "type": "git",
     "url": "https://github.com/ayushsharma82/EasyDDNS.git"
   },
-  "frameworks": "arduino",
-  "platforms":
+  "authors":
   [
-    "espressif"
-  ]
+    {
+      "name": "Ayush Sharma",
+      "email": "asrocks5@gmail.com",
+      "maintainer": true
+    }
+  ],
+  "version": "1.5.5",
+  "frameworks": "arduino",
+  "platforms": "espressif"
 }
