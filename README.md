@@ -98,7 +98,7 @@ void loop() {
 
 ## Support Me
 
-If you like my work, You can always buy me a coffee :) , It supports my work and in return you get to keep a updated version of my libraries.
+You can always buy me a coffee :) , It supports my work and in return you get to keep up-to-date version of my libraries.
 
 <br>
 <a href="https://www.buymeacoffee.com/6QGVpSj" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-%245-orange?style=for-the-badge&logo=buy-me-a-coffee" /></a>
