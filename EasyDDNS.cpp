@@ -38,27 +38,39 @@ void EasyDDNSClass::client(String ddns_domain, String ddns_username, String ddns
   ddns_p = ddns_password;
 }
 
-void EasyDDNSClass::update(unsigned long ddns_update_interval){
+void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip ){
 
     interval = ddns_update_interval;
 
     unsigned long currentMillis = millis(); // Calculate Elapsed Time & Trigger
     if(currentMillis - previousMillis >= interval) {
         previousMillis = currentMillis;
-		
+
+
+
+	if ( use_local_ip ) {
+	  IPAddress ipAddress = WiFi.localIP();
+	  
+	  new_ip = String(ipAddress[0]) + String(".") +			\
+	    String(ipAddress[1]) + String(".") +			\
+	    String(ipAddress[2]) + String(".") +			\
+	    String(ipAddress[3]);
+
+	} else {	
 // ######## GET PUBLIC IP ######## //
-        HTTPClient http;
-        http.begin("http://ipv4bot.whatismyipaddress.com/");
-        int httpCode = http.GET();
-        if(httpCode > 0) {
-          if(httpCode == HTTP_CODE_OK) {
-                new_ip = http.getString();
-              }
-        }else{
+          HTTPClient http;
+          http.begin("http://ipv4bot.whatismyipaddress.com/");
+          int httpCode = http.GET();
+          if(httpCode > 0) {
+            if(httpCode == HTTP_CODE_OK) {
+                  new_ip = http.getString();
+                }
+          }else{
+            http.end();
+            return;
+          }
           http.end();
-          return;
-        }
-        http.end();
+	}
 		
 // ######## GENERATE UPDATE URL ######## //
         if(ddns_choice == "duckdns"){

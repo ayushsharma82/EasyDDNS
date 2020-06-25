@@ -52,6 +52,10 @@ For **enom**, Use `EasyDDNS.client("host","domain","password");`<br>
 where `host` is something like `www`, and `domain` can be `example.com` <br>
 
 - Atlast Use `EasyDDNS.update(10000);` in loop() to set Interval to Check for New Public IP.
+<br>
+OR
+<br>
+Use `EasyDDNS.update(10000, true);` in loop() to set Interval to Check for New Local Network IP so can use DDNS for devices that don't support mDNS to access within local network. 
 
 **5 Ready to Use Examples are Provided with Library for DuckDNS, DynDNS, Dynu, No-ip & enom.**
 
