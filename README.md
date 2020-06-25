@@ -1,15 +1,37 @@
 # EasyDDNS
-An Easy to Use ESP8266 DDNS Update Client Library.
 
-This Library is created to update your DDNS domains with your ESP8266 Or ESP32. The EasyDDNS Library can be implemented in your major projects as a Sidekick. It is independent and does not interfare with rest of your code.
+<p>
+<!-- <img src="https://img.shields.io/travis/com/ayushsharma82/EasyDDNS.svg?style=for-the-badge" />
+&nbsp; -->
+<img src="https://img.shields.io/github/last-commit/ayushsharma82/EasyDDNS.svg?style=for-the-badge" />
+&nbsp;
+<img src="https://img.shields.io/github/license/ayushsharma82/EasyDDNS.svg?style=for-the-badge" />
+&nbsp;
+<a href="https://www.buymeacoffee.com/6QGVpSj" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-%245-orange?style=for-the-badge&logo=buy-me-a-coffee" /></a>
+</p>
 
-**Currently EasyDDNS Library Supports DuckDNS, No-ip, DynDNS, Dynu, ENom, all-inkl, selfhost.de, strato.**
+<br>
 
+An easy to use DDNS Update Client library for ESP8266 & ESP32.
 
-Find More about DDNS: [WiKipedia](https://en.wikipedia.org/wiki/Dynamic_DNS)
+EasyDDNS Library can be implemented in your major projects as a sidekick. It is independent and does not interfare with rest of your code.
 
-# How to Install
-###### Directly Through Arduino IDE
+#### Supported DDNS Providers:
+- DuckDNS
+- No-ip
+- DynDNS
+- Dynu
+- ENom
+- all-inkl
+- selfhost.de
+- strato
+
+If you don't know what's DDNS, then you can find more info about DDNS here: [WiKipedia](https://en.wikipedia.org/wiki/Dynamic_DNS)
+
+<br>
+
+## How to Install
+###### (Best Method) Directly Through Arduino IDE
 Go to Sketch > Include Library > Library Manager > Search for "EasyDDNS" > Install
 
 ###### Manual Install
@@ -22,42 +44,63 @@ For Linux: Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/a
 
 Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/master.zip), Go to Sketch>Include Library>Add .zip Library> Select the Downloaded .zip File.
 
-# Dependencies
-This Library is Dependent on [ESP8266 Core Library](https://github.com/esp8266/Arduino) or [Arduino core for ESP32](https://github.com/espressif/arduino-esp32) to Function Properly.
-Make Sure you Install Both EasyDDNS and ESP8266 Core Library (or Arduino core for ESP32) to make this Work.
+<br>
 
-# How to Implement
+## Dependencies
+
+### For ESP8266:
+- [ESP8266 Core Library](https://github.com/esp8266/Arduino)
+
+### For ESP32:
+- [Arduino core for ESP32](https://github.com/espressif/arduino-esp32)
+
+<br>
+
+## Examples
 EasyDDNS Library uses only 3 Lines of Code to run the requested update server on your ESP8266 or ESP32.
 
-###### Here is How you can use the Library:<br>
+##### DynDNS:<br>
 
-**For V1.5.0:**<br>
-- Add `#include<EasyDDNS.h>` in your Code at Top.
-- Use `EasyDDNS.service("");` in setup() to select your ddns service - "duckdns" / "noip" / "dyndns" / "dynu" / "enom" / "all-inkl" / "selfhost.de".
+```
+#include <EasyDDNS.h>
+#include <ESP8266WiFi.h>
 
+const char* ssid = "your-ssid";
+const char* password = "your-password";
 
-Now in setup() again, For **DuckDNS** Use `EasyDDNS.client("domain","token");`<br>
-<br>
-OR
-<br>
-For **DynDNS** Use `EasyDDNS.client("hostname","username","client-key");`<br>
-<br>
-OR
-<br>
-For **No-ip / Dynu / all-inkl / selfhost.de / strato**, Use `EasyDDNS.client("hostname","username","password");`<br>
-<br>
-OR
-<br>
-For **enom**, Use `EasyDDNS.client("host","domain","password");`<br>
-where `host` is something like `www`, and `domain` can be `example.com` <br>
+WiFiServer server(80);
 
-- Atlast Use `EasyDDNS.update(10000);` in loop() to set Interval to Check for New Public IP.
-<br>
-OR
-<br>
-Use `EasyDDNS.update(10000, true);` in loop() to set Interval to Check for New Local Network IP so can use DDNS for devices that don't support mDNS to access within local network. 
+void setup() {
+  Serial.begin(115200);
+  WiFi.mode(WIFI_STA);
+  WiFi.begin(ssid, password);
 
-**5 Ready to Use Examples are Provided with Library for DuckDNS, DynDNS, Dynu, No-ip & enom.**
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
 
-# Support Me
-Liked this Library? You can Support me by sending me a :beer: [Beer](https://www.paypal.me/ayushsharma82/5).
+  Serial.println(WiFi.localIP()); // Print the IP address
+  server.begin();
+
+  EasyDDNS.service("dyndns");    // Enter your DDNS Service Name - "duckdns" / "noip" / "dyndns" / "dynu"
+  EasyDDNS.client("hostname","username","client-key");    // Enter ddns Hostname - Username - Client-key
+}
+
+void loop() {
+  EasyDDNS.update(10000); // Check for New Ip Every 10 Seconds.
+}
+```
+
+**You can find more examples for various other DDNS providers in the `examples` directory.**
+
+<br>
+<br>
+
+## Support Me
+
+If you like my work, You can always buy me a coffee :) , It supports my work and in return you get to keep a updated version of my libraries.
+
+<br>
+
+<a href="https://www.buymeacoffee.com/6QGVpSj" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-%245-orange?style=for-the-badge&logo=buy-me-a-coffee" /></a>
