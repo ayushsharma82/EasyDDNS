@@ -1,29 +1,8 @@
 /*
-// ##### REQUIRED LIBRARIES IN SKETCH ##### //
- -- for ESP8266 --
-#include "ESP8266WiFi.h"
-#include "ESP8266HTTPClient.h"
-
--- for ESP32 --
-#include "WiFi.h"
-#include "HTTPClient.h"
-
-*/
-
-/*
-EasyDDNS Library for ESP8266
+EasyDDNS Library for ESP8266 or ESP32
 See the README file for more details.
 
-Written in 2017 by Ayush Sharma.
-
-This work is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License:
-http://creativecommons.org/licenses/by-sa/4.0/
-
-Version 1.5.0
-
-Changelog:
-Version 1.0.0 - Made EasyDDNS Library for No-ip and DuckDNS
-Version 1.5.0 - Optimized Library and Added Dyndns & Dynu
+Written in 2017 by Ayush Sharma. Licensed under MIT.
 */
 
 #ifndef EasyDDNS_H
@@ -46,7 +25,7 @@ Version 1.5.0 - Optimized Library and Added Dyndns & Dynu
 class EasyDDNSClass{
 public:
   void service(String ddns_service);
-  void client(String ddns_domain, String ddns_username,String ddns_password = "");
+  void client(String ddns_domain, String ddns_username, String ddns_password = "");
   void update(unsigned long ddns_update_interval, bool use_local_ip = false);
 
 private:
