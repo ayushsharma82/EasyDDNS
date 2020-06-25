@@ -1,9 +1,9 @@
 # EasyDDNS
 
 <p>
-<!-- <img src="https://img.shields.io/travis/com/ayushsharma82/EasyDDNS.svg?style=for-the-badge" />
-&nbsp; -->
 <img src="https://img.shields.io/github/last-commit/ayushsharma82/EasyDDNS.svg?style=for-the-badge" />
+&nbsp;
+<img src="https://img.shields.io/travis/com/ayushsharma82/EasyDDNS?style=for-the-badge" />
 &nbsp;
 <img src="https://img.shields.io/github/license/ayushsharma82/EasyDDNS?style=for-the-badge" />
 &nbsp;
@@ -57,8 +57,6 @@ Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/mast
 <br>
 
 ## Example
-EasyDDNS library uses only 3 lines of code to run the requested update server on your ESP8266 or ESP32.
-
 
 ```
 #if defined(ESP8266)
