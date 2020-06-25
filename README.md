@@ -5,7 +5,7 @@
 &nbsp; -->
 <img src="https://img.shields.io/github/last-commit/ayushsharma82/EasyDDNS.svg?style=for-the-badge" />
 &nbsp;
-<img src="https://img.shields.io/github/license/ayushsharma82/EasyDDNS.svg?style=for-the-badge" />
+<img src="https://img.shields.io/github/license/ayushsharma82/EasyDDNS?style=for-the-badge" />
 &nbsp;
 <a href="https://www.buymeacoffee.com/6QGVpSj" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-%245-orange?style=for-the-badge&logo=buy-me-a-coffee" /></a>
 </p>
