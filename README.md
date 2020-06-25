@@ -49,10 +49,10 @@ Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/mast
 ## Dependencies
 
 #### For ESP8266:
-- [ESP8266 Core Library](https://github.com/esp8266/Arduino)
+- [ESP8266 Arduino Core](https://github.com/esp8266/Arduino)
 
 #### For ESP32:
-- [Arduino core for ESP32](https://github.com/espressif/arduino-esp32)
+- [ESP32 Arduino Core](https://github.com/espressif/arduino-esp32)
 
 <br>
 
