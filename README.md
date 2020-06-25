@@ -48,16 +48,16 @@ Download the [Repository](https://github.com/ayushsharma82/EasyDDNS/archive/mast
 
 ## Dependencies
 
-### For ESP8266:
+#### For ESP8266:
 - [ESP8266 Core Library](https://github.com/esp8266/Arduino)
 
-### For ESP32:
+#### For ESP32:
 - [Arduino core for ESP32](https://github.com/espressif/arduino-esp32)
 
 <br>
 
 ## Examples
-EasyDDNS Library uses only 3 Lines of Code to run the requested update server on your ESP8266 or ESP32.
+EasyDDNS Library uses only 3 lines of code to run the requested update server on your ESP8266 or ESP32.
 
 ##### DynDNS:<br>
 
@@ -95,12 +95,10 @@ void loop() {
 **You can find more examples for various other DDNS providers in the `examples` directory.**
 
 <br>
-<br>
 
 ## Support Me
 
 If you like my work, You can always buy me a coffee :) , It supports my work and in return you get to keep a updated version of my libraries.
 
 <br>
-
 <a href="https://www.buymeacoffee.com/6QGVpSj" target="_blank"><img src="https://img.shields.io/badge/Buy%20me%20a%20coffee-%245-orange?style=for-the-badge&logo=buy-me-a-coffee" /></a>
