@@ -21,6 +21,8 @@ Written in 2017 by Ayush Sharma. Licensed under MIT.
   #define HARDWARE "esp32"
 #endif
 
+// Handler to notify user about new public IP
+typedef std::function<void(const char* old_ip, const char* new_ip)> DDNSUpdateHandler;
 
 class EasyDDNSClass{
 public:
@@ -28,7 +30,14 @@ public:
   void client(String ddns_domain, String ddns_username, String ddns_password = "");
   void update(unsigned long ddns_update_interval, bool use_local_ip = false);
 
+  // Callback
+  void onUpdate(DDNSUpdateHandler handler) {
+    _ddnsUpdateFunc = handler;
+  }
+
 private:
+  DDNSUpdateHandler _ddnsUpdateFunc = nullptr;
+
   unsigned long interval;
   unsigned long previousMillis;
 

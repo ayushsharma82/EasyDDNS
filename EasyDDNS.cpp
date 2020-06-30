@@ -79,6 +79,11 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
       http.begin(update_url);
       int httpCode = http.GET();
       if (httpCode == 200) {
+        // Send a callback notification
+        if(_ddnsUpdateFunc != nullptr){
+          _ddnsUpdateFunc(old_ip.c_str(), new_ip.c_str());
+        }
+        // Replace Old IP with new one to detect further changes.
         old_ip = new_ip;
       }
       http.end();
