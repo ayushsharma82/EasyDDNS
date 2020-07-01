@@ -51,6 +51,12 @@ void setup() {
       Use this: EasyDDNS.client("domain", "username", "password");
   */
   EasyDDNS.client("12345.duckdns.org", "token"); // Enter your DDNS Domain & Token
+
+  // Get Notified when your IP changes
+  EasyDDNS.onUpdate([&](const char* oldIP, const char* newIP){
+    Serial.print("EasyDDNS - IP Change Detected: ");
+    Serial.println(newIP);
+  });
 }
 
 void loop() {
