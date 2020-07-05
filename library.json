@@ -15,7 +15,7 @@
       "maintainer": true
     }
   ],
-  "version": "1.5.8",
+  "version": "1.5.7",
   "frameworks": "arduino",
   "platforms": "espressif"
 }
