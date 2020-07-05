@@ -49,27 +49,40 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
     }
 
     // ######## GENERATE UPDATE URL ######## //
-    if (ddns_choice == "duckdns") {
-      update_url = "http://www.duckdns.org/update?domains=" + ddns_d + "&token=" + ddns_u + "&ip=" + new_ip + "";
-    } else if (ddns_choice == "noip") {
-      update_url = "http://" + ddns_u + ":" + ddns_p + "@dynupdate.no-ip.com/nic/update?hostname=" + ddns_d + "&myip=" + new_ip + "";
-    } else if (ddns_choice == "dyndns") {
-      update_url = "http://" + ddns_u + ":" + ddns_p + "@members.dyndns.org/v3/update?hostname=" + ddns_d + "&myip=" + new_ip + "";
-    } else if (ddns_choice == "dynu") {
-      update_url = "http://api.dynu.com/nic/update?hostname=" + ddns_d + "&myip=" + new_ip + "&username=" + ddns_u + "&password=" + ddns_p + "";
-    } else if (ddns_choice == "enom") {
-      update_url = "http://dynamic.name-services.com/interface.asp?command=SetDnsHost&HostName=" + ddns_d + "&Zone=" + ddns_u + "&DomainPassword=" + ddns_p + "&Address=" + new_ip + "";
-    } else if (ddns_choice == "all-inkl") {
-      update_url = "http://" + ddns_u + ":" + ddns_p + "@dyndns.kasserver.com/?myip=" + new_ip;
-    } else if (ddns_choice == "selfhost.de") {
-      update_url = "http://" + ddns_u + ":" + ddns_p + "@carol.selfhost.de/nic/update?";
-    } else if (ddns_choice == "dyndns.it") {
-      update_url = "http://" + ddns_u + ":" + ddns_p + "@update.dyndns.it/nic/update?hostname=" + ddns_d;
-    } else if (ddns_choice == "strato") {
-      update_url = "http://" + ddns_u + ":" + ddns_p + "@dyndns.strato.com/nic/update?hostname=" + ddns_d + "&myip=" + new_ip + "";
-    } else {
-      Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
-      return;
+    switch(ddns_choice){
+      case "duckdns":
+        update_url = "http://www.duckdns.org/update?domains=" + ddns_d + "&token=" + ddns_u + "&ip=" + new_ip + "";
+        break;
+      case "noip":
+        update_url = "http://" + ddns_u + ":" + ddns_p + "@dynupdate.no-ip.com/nic/update?hostname=" + ddns_d + "&myip=" + new_ip + "";
+        break;
+      case "dyndns":
+        update_url = "http://" + ddns_u + ":" + ddns_p + "@members.dyndns.org/v3/update?hostname=" + ddns_d + "&myip=" + new_ip + "";
+        break;
+      case "dynu":
+        update_url = "http://api.dynu.com/nic/update?hostname=" + ddns_d + "&myip=" + new_ip + "&username=" + ddns_u + "&password=" + ddns_p + "";
+        break;
+      case "enom":
+        update_url = "http://dynamic.name-services.com/interface.asp?command=SetDnsHost&HostName=" + ddns_d + "&Zone=" + ddns_u + "&DomainPassword=" + ddns_p + "&Address=" + new_ip + "";
+        break;
+      case "all-inkl":
+        update_url = "http://" + ddns_u + ":" + ddns_p + "@dyndns.kasserver.com/?myip=" + new_ip;
+        break;
+      case "selfhost.de":
+        update_url = "http://" + ddns_u + ":" + ddns_p + "@carol.selfhost.de/nic/update?";
+        break;
+      case "dyndns.it":
+        update_url = "http://" + ddns_u + ":" + ddns_p + "@update.dyndns.it/nic/update?hostname=" + ddns_d;
+        break;
+      case "strato":
+        update_url = "http://" + ddns_u + ":" + ddns_p + "@dyndns.strato.com/nic/update?hostname=" + ddns_d + "&myip=" + new_ip + "";
+        break;
+      case "freemyip":
+        update_url = "http://freemyip.com/update?domain=" + ddns_d + "&token=" + ddns_u + "&myip=" + new_ip + "";
+        break;
+      default:
+        Serial.println("## DDNS SERVICE NOT FOUND ##");
+        return;
     }
 
     // ######## CHECK & UPDATE ######### //

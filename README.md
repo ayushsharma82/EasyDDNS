@@ -25,6 +25,7 @@ EasyDDNS Library can be implemented in your major projects as a sidekick. It is 
 - all-inkl
 - selfhost.de
 - strato
+- freemyip
 
 If you don't know what's DDNS, then you can find more info about DDNS here: [WiKipedia](https://en.wikipedia.org/wiki/Dynamic_DNS)
 
@@ -96,6 +97,7 @@ void setup() {
     - "selfhost.de"
     - "dyndns.it"
     - "strato"
+    - "freemyip"
   */
   EasyDDNS.service("duckdns");
 
