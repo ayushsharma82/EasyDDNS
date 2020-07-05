@@ -67,6 +67,8 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
       update_url = "http://" + ddns_u + ":" + ddns_p + "@update.dyndns.it/nic/update?hostname=" + ddns_d;
     } else if (ddns_choice == "strato") {
       update_url = "http://" + ddns_u + ":" + ddns_p + "@dyndns.strato.com/nic/update?hostname=" + ddns_d + "&myip=" + new_ip + "";
+    } else if (ddns_choice == "freemyip") {
+      update_url = "http://freemyip.com/update?domain=" + ddns_d + "&token=" + ddns_u + "&myip=" + new_ip + "";
     } else {
       Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
       return;

@@ -40,6 +40,7 @@ void setup() {
     - "selfhost.de"
     - "dyndns.it"
     - "strato"
+    - "freemyip"
   */
   EasyDDNS.service("duckdns");
 
