@@ -41,6 +41,7 @@ void setup() {
     - "dyndns.it"
     - "strato"
     - "freemyip"
+    - "afraid.org"
   */
   EasyDDNS.service("duckdns");
 
