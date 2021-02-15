@@ -27,6 +27,7 @@ EasyDDNS Library can be implemented in your major projects as a sidekick. It is 
 - strato
 - freemyip
 - afraid.org
+- OVH.com
 
 If you don't know what's DDNS, then you can find more info about DDNS here: [WiKipedia](https://en.wikipedia.org/wiki/Dynamic_DNS)
 
