@@ -34,8 +34,9 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
         String(ipAddress[3]);
     } else {
       // ######## GET PUBLIC IP ######## //
+      WiFiClient client;
       HTTPClient http;
-      http.begin("http://ipv4bot.whatismyipaddress.com/");
+      http.begin(client, "http://ipv4bot.whatismyipaddress.com/");
       int httpCode = http.GET();
       if (httpCode > 0) {
         if (httpCode == HTTP_CODE_OK) {
@@ -80,9 +81,9 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
 
     // ######## CHECK & UPDATE ######### //
     if (old_ip != new_ip) {
-
+      WiFiClient client;
       HTTPClient http;
-      http.begin(update_url);
+      http.begin(client, update_url);
       int httpCode = http.GET();
       if (httpCode == 200) {
         // Send a callback notification

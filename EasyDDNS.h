@@ -26,7 +26,6 @@ typedef std::function<void(const char* old_ip, const char* new_ip)> DDNSUpdateHa
 
 class EasyDDNSClass{
   public:
-    EasyDDNSClass();
     void service(String ddns_service);
     void client(String ddns_domain, String ddns_username, String ddns_password = "");
     void update(unsigned long ddns_update_interval, bool use_local_ip = false);
@@ -35,10 +34,8 @@ class EasyDDNSClass{
     void onUpdate(DDNSUpdateHandler handler) {
       _ddnsUpdateFunc = handler;
     }
-    ~EasyDDNSClass();
 
   private:
-    WiFiClient *_client = nullptr;
     DDNSUpdateHandler _ddnsUpdateFunc = nullptr;
 
     unsigned long interval;
