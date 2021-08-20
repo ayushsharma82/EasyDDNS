@@ -25,29 +25,32 @@ Written in 2017 by Ayush Sharma. Licensed under MIT.
 typedef std::function<void(const char* old_ip, const char* new_ip)> DDNSUpdateHandler;
 
 class EasyDDNSClass{
-public:
-  void service(String ddns_service);
-  void client(String ddns_domain, String ddns_username, String ddns_password = "");
-  void update(unsigned long ddns_update_interval, bool use_local_ip = false);
+  public:
+    EasyDDNSClass();
+    void service(String ddns_service);
+    void client(String ddns_domain, String ddns_username, String ddns_password = "");
+    void update(unsigned long ddns_update_interval, bool use_local_ip = false);
 
-  // Callback
-  void onUpdate(DDNSUpdateHandler handler) {
-    _ddnsUpdateFunc = handler;
-  }
+    // Callback
+    void onUpdate(DDNSUpdateHandler handler) {
+      _ddnsUpdateFunc = handler;
+    }
+    ~EasyDDNSClass();
 
-private:
-  DDNSUpdateHandler _ddnsUpdateFunc = nullptr;
+  private:
+    WiFiClient *_client = nullptr;
+    DDNSUpdateHandler _ddnsUpdateFunc = nullptr;
 
-  unsigned long interval;
-  unsigned long previousMillis;
+    unsigned long interval;
+    unsigned long previousMillis;
 
-  String new_ip;
-  String old_ip;
-  String update_url;
-  String ddns_u;
-  String ddns_p;
-  String ddns_d;
-  String ddns_choice;
+    String new_ip;
+    String old_ip;
+    String update_url;
+    String ddns_u;
+    String ddns_p;
+    String ddns_d;
+    String ddns_choice;
 };
 extern EasyDDNSClass EasyDDNS;
 #endif
