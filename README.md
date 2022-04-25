@@ -3,7 +3,7 @@
 <p>
 <img src="https://img.shields.io/github/last-commit/ayushsharma82/EasyDDNS.svg?style=for-the-badge" />
 &nbsp;
-<img src="https://img.shields.io/travis/com/ayushsharma82/EasyDDNS?style=for-the-badge" />
+<img src="https://img.shields.io/github/workflow/status/ayushsharma82/EasyDDNS/Arduino%20Library%20CI/master?style=for-the-badge" />
 &nbsp;
 <img src="https://img.shields.io/github/license/ayushsharma82/EasyDDNS?style=for-the-badge" />
 &nbsp;
