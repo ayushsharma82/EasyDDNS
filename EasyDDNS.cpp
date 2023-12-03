@@ -12,10 +12,11 @@ void EasyDDNSClass::service(String ddns_service) {
   ddns_choice = ddns_service;
 }
 
-void EasyDDNSClass::client(String ddns_domain, String ddns_username, String ddns_password) {
+void EasyDDNSClass::client(String ddns_domain, String ddns_username, String ddns_password, String ddns_identifier) {
   ddns_d = ddns_domain;
   ddns_u = ddns_username;
   ddns_p = ddns_password;
+  ddns_id = ddns_identifier;
 }
 
 void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip) {
@@ -38,12 +39,12 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
       HTTPClient http;
       http.begin(client, "http://ifconfig.me/ip");
       int httpCode = http.GET();
-      if (httpCode > 0) {
-        if (httpCode == HTTP_CODE_OK) {
-          new_ip = http.getString();
-        }
+      if (httpCode > 0 && httpCode == HTTP_CODE_OK) {
+        new_ip = http.getString();
       } else {
-        http.end();
+        if(_ddnsErrorFunc != nullptr){
+          _ddnsErrorFunc(httpCode, http.getString());
+        }
         return;
       }
       http.end();
@@ -74,6 +75,8 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
       update_url = "http://sync.afraid.org/u/" + ddns_u + "/";
     } else if (ddns_choice == "ovh") {
       update_url = "http://" + ddns_u + ":" + ddns_p + "@www.ovh.com/nic/update?system=dyndns&hostname=" + ddns_d + "&myip=" + new_ip + "";
+    } else if (ddns_choice == "cloudflare") {
+      update_url = "https://api.cloudflare.com/client/v4/zones/" + ddns_p + "/dns_records/" + ddns_id;
     } else {
       Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
       return;
@@ -81,10 +84,24 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
 
     // ######## CHECK & UPDATE ######### //
     if (old_ip != new_ip) {
-      WiFiClient client;
       HTTPClient http;
-      http.begin(client, update_url);
-      int httpCode = http.GET();
+      int httpCode;
+
+      if (ddns_choice == "cloudflare"){
+        // ######## HANDLE CLOUDFLARE ######### //
+        WiFiClientSecure client;
+        client.setFingerprint("EE:E9:CE:78:7E:95:78:C9:51:5F:ED:C5:68:15:39:2B:07:1A:9C:BB");
+        http.begin(client, update_url);
+        http.addHeader("Content-Type", "application/json");
+        http.addHeader("Authorization", "Bearer " + ddns_u);
+        String body = "{\"content\": \"" + new_ip + "\", \"name\":\"" + ddns_d + "\", \"type\": \"A\"}";
+        httpCode = http.PUT(body);
+      }else{
+        WiFiClient client;
+        http.begin(client, update_url);
+        httpCode = http.GET();
+      }
+
       if (httpCode == 200) {
         // Send a callback notification
         if(_ddnsUpdateFunc != nullptr){
@@ -92,6 +109,9 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
         }
         // Replace Old IP with new one to detect further changes.
         old_ip = new_ip;
+      // Send an callback error
+      }else if(_ddnsErrorFunc != nullptr){
+        _ddnsErrorFunc(httpCode, http.getString());
       }
       http.end();
     }
