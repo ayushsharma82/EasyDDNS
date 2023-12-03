@@ -37,6 +37,7 @@ void setup() {
     - "strato"
     - "freemyip"
     - "afraid.org"
+    - "cloudflare"
   */
   EasyDDNS.service("duckdns");
 
@@ -46,6 +47,9 @@ void setup() {
     
     For DDNS Providers where you get username and password: ( Leave the password field empty "" if not required )
       Use this: EasyDDNS.client("domain", "username", "password");
+
+    For Cloudflare: 
+      Use this: EasyDDNS.client("domain", "token", "zone_identifier", "identifier");
   */
   EasyDDNS.client("12345.duckdns.org", "token"); // Enter your DDNS Domain & Token
 

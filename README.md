@@ -28,6 +28,7 @@ EasyDDNS Library can be implemented in your major projects as a sidekick. It is 
 - freemyip
 - afraid.org
 - OVH.com
+- Cloudflare
 
 If you don't know what's DDNS, then you can find more info about DDNS here: [WiKipedia](https://en.wikipedia.org/wiki/Dynamic_DNS)
 
@@ -101,6 +102,7 @@ void setup() {
     - "strato"
     - "freemyip"
     - "afraid.org"
+    - "cloudflare"
   */
   EasyDDNS.service("duckdns");
 
@@ -110,6 +112,9 @@ void setup() {
     
     For DDNS Providers where you get username and password: ( Leave the password field empty "" if not required )
       Use this: EasyDDNS.client("domain", "username", "password");
+      
+    For Cloudflare: 
+      Use this: EasyDDNS.client("domain", "token", "zone_identifier", "identifier");
   */
   EasyDDNS.client("12345.duckdns.org", "token"); // Enter your DDNS Domain & Token
 

@@ -12,10 +12,11 @@ void EasyDDNSClass::service(String ddns_service) {
   ddns_choice = ddns_service;
 }
 
-void EasyDDNSClass::client(String ddns_domain, String ddns_username, String ddns_password) {
+void EasyDDNSClass::client(String ddns_domain, String ddns_username, String ddns_password, String ddns_identifier) {
   ddns_d = ddns_domain;
   ddns_u = ddns_username;
   ddns_p = ddns_password;
+  ddns_id = ddns_identifier;
 }
 
 void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip) {
@@ -36,7 +37,7 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
       // ######## GET PUBLIC IP ######## //
       WiFiClient client;
       HTTPClient http;
-      http.begin(client, "http://ifconfig.me/ip");
+      http.begin(client, "https://ifconfig.me/ip");
       int httpCode = http.GET();
       if (httpCode > 0) {
         if (httpCode == HTTP_CODE_OK) {
@@ -74,6 +75,8 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
       update_url = "http://sync.afraid.org/u/" + ddns_u + "/";
     } else if (ddns_choice == "ovh") {
       update_url = "http://" + ddns_u + ":" + ddns_p + "@www.ovh.com/nic/update?system=dyndns&hostname=" + ddns_d + "&myip=" + new_ip + "";
+    } else if (ddns_choice == "cloudflare") {
+      update_url = "https://api.cloudflare.com/client/v4/zones/" + ddns_p + "/dns_records/" + ddns_id;
     } else {
       Serial.println("## INPUT CORRECT DDNS SERVICE NAME ##");
       return;
@@ -84,7 +87,15 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
       WiFiClient client;
       HTTPClient http;
       http.begin(client, update_url);
-      int httpCode = http.GET();
+      int httpCode;
+      if (ddns_choice == "cloudflare"){
+        http.addHeader("Content-Type", "application/json");
+        http.addHeader("X-Auth-Email", ddns_u);
+        String body = "content=" + new_ip + "&name=" + ddns_d + "&type=A";
+        httpCode = http.PUT(body);
+      }else{
+        httpCode = http.GET();
+      }
       if (httpCode == 200) {
         // Send a callback notification
         if(_ddnsUpdateFunc != nullptr){
