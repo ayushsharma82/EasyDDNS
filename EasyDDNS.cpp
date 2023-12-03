@@ -37,14 +37,14 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
       // ######## GET PUBLIC IP ######## //
       WiFiClient client;
       HTTPClient http;
-      http.begin(client, "https://ifconfig.me/ip");
+      http.begin(client, "http://ifconfig.me/ip");
       int httpCode = http.GET();
-      if (httpCode > 0) {
-        if (httpCode == HTTP_CODE_OK) {
-          new_ip = http.getString();
-        }
+      if (httpCode > 0 && httpCode == HTTP_CODE_OK) {
+        new_ip = http.getString();
       } else {
-        http.end();
+        if(_ddnsErrorFunc != nullptr){
+          _ddnsErrorFunc(httpCode, http.getString());
+        }
         return;
       }
       http.end();
@@ -84,18 +84,24 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
 
     // ######## CHECK & UPDATE ######### //
     if (old_ip != new_ip) {
-      WiFiClient client;
       HTTPClient http;
-      http.begin(client, update_url);
       int httpCode;
+
       if (ddns_choice == "cloudflare"){
+        // ######## HANDLE CLOUDFLARE ######### //
+        WiFiClientSecure client;
+        client.setFingerprint("EE:E9:CE:78:7E:95:78:C9:51:5F:ED:C5:68:15:39:2B:07:1A:9C:BB");
+        http.begin(client, update_url);
         http.addHeader("Content-Type", "application/json");
-        http.addHeader("X-Auth-Email", ddns_u);
-        String body = "content=" + new_ip + "&name=" + ddns_d + "&type=A";
+        http.addHeader("Authorization", "Bearer " + ddns_u);
+        String body = "{\"content\": \"" + new_ip + "\", \"name\":\"" + ddns_d + "\", \"type\": \"A\"}";
         httpCode = http.PUT(body);
       }else{
+        WiFiClient client;
+        http.begin(client, update_url);
         httpCode = http.GET();
       }
+
       if (httpCode == 200) {
         // Send a callback notification
         if(_ddnsUpdateFunc != nullptr){
@@ -103,6 +109,9 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
         }
         // Replace Old IP with new one to detect further changes.
         old_ip = new_ip;
+      // Send an callback error
+      }else if(_ddnsErrorFunc != nullptr){
+        _ddnsErrorFunc(httpCode, http.getString());
       }
       http.end();
     }

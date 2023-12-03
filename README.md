@@ -123,6 +123,13 @@ void setup() {
     Serial.print("EasyDDNS - IP Change Detected: ");
     Serial.println(newIP);
   });
+
+  // Get Notified when your IP changes
+  EasyDDNS.onError([&](int httpCode, String errorMsg){
+    Serial.print("EasyDDNS - Error Detected: ");
+    Serial.println(String(httpCode));
+    Serial.println(errorMsg);
+  });
 }
 
 void loop() {

@@ -10,6 +10,7 @@ Written in 2017 by Ayush Sharma. Licensed under MIT.
 
 #include "Arduino.h"
 #include "stdlib_noniso.h"
+#include <WiFiClientSecure.h>
 
 #if defined(ESP8266)
   #include "ESP8266WiFi.h"
@@ -21,8 +22,10 @@ Written in 2017 by Ayush Sharma. Licensed under MIT.
   #define HARDWARE "esp32"
 #endif
 
+
 // Handler to notify user about new public IP
 typedef std::function<void(const char* old_ip, const char* new_ip)> DDNSUpdateHandler;
+typedef std::function<void(int httpCode, String errorMsg)> DDNSErrorHandler;
 
 class EasyDDNSClass{
   public:
@@ -34,15 +37,19 @@ class EasyDDNSClass{
     void onUpdate(DDNSUpdateHandler handler) {
       _ddnsUpdateFunc = handler;
     }
+    void onError(DDNSErrorHandler handler) {
+      _ddnsErrorFunc = handler;
+    }
 
   private:
     DDNSUpdateHandler _ddnsUpdateFunc = nullptr;
+    DDNSErrorHandler _ddnsErrorFunc = nullptr;
 
     unsigned long interval;
     unsigned long previousMillis;
 
     String new_ip;
-    String old_ip;
+    String old_ip = "0.0.0.0";
     String update_url;
     String ddns_u;
     String ddns_p;
