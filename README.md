@@ -1,5 +1,11 @@
 # EasyDDNS
 
+<br/>
+
+**Notice: This library has been deprecated and is not going to be maintained.**
+
+<br/>
+
 <p>
 <img src="https://img.shields.io/github/last-commit/ayushsharma82/EasyDDNS.svg?style=for-the-badge" />
 &nbsp;
