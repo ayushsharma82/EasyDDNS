@@ -36,7 +36,7 @@ void EasyDDNSClass::update(unsigned long ddns_update_interval, bool use_local_ip
       // ######## GET PUBLIC IP ######## //
       WiFiClient client;
       HTTPClient http;
-      http.begin(client, "http://ifconfig.me/ip");
+      http.begin(client, "https://ifconfig.me/ip");
       int httpCode = http.GET();
       if (httpCode > 0) {
         if (httpCode == HTTP_CODE_OK) {
